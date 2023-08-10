@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import PortfolioTabs from './PortfolioTabs';
-import AboutTab from './AboutTab'; // Import your tab components
+import AboutTab from './AboutTab';
 import ResumeTab from './ResumeTab';
 import PortfolioTab from './PortfolioTab';
 import BlogTab from './BlogTab';

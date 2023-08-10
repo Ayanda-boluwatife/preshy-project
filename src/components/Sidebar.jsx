@@ -1,5 +1,5 @@
 import React from 'react';
-import { BsCalendar, BsFacebook, BsInstagram, BsMailbox, BsPhone, BsPinMap, BsTwitter } from 'react-icons/bs'
+import { BsFacebook, BsInstagram, BsMailbox, BsPhone, BsPinMap, BsTwitter } from 'react-icons/bs'
 
 const Sidebar = () => {
   return (
@@ -66,7 +66,7 @@ const Sidebar = () => {
             </div>
             <div>
               <p className="text-sm font-medium">Location</p>
-              <address className="text-gray-400">Sacramento, California, USA</address>
+              <address className="text-gray-400">Abuja, Nigeria</address>
             </div>
           </li>
         </ul>

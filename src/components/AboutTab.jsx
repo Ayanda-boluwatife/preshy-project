@@ -11,7 +11,6 @@ const skills = [
     { id: 'NextJs', label: 'NextJs', percentage: 70 },
     { id: 'TailwindCss', label: 'TailwindCss', percentage: 90 },
     { id: 'MongoDB', label: 'MongoDB', percentage: 75 },
-    // Add more skills here
   ];
   
   const AboutTab = () => {

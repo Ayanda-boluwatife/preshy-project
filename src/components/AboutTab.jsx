@@ -1,6 +1,8 @@
 "use client"
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import Modal from 'react-modal';
+import { testimonials } from './data';
 
 const skills = [
     { id: 'html', label: 'HTML/CSS', percentage: 85 },
@@ -24,6 +26,35 @@ const skills = [
       const progressBar = document.querySelector(`#${skillId}`);
       progressBar.style.width = `${percentage}%`;
     };
+
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [selectedTestimonial, setSelectedTestimonial] = useState(null);
+    const [testimonialIndex, setTestimonialIndex] = useState(0);
+  
+    const openModal = (testimonial) => {
+      setSelectedTestimonial(testimonial);
+      setModalIsOpen(true);
+    };
+  
+    const closeModal = () => {
+      setSelectedTestimonial(null);
+      setModalIsOpen(false);
+    };
+
+    const testimonialsPerSlide = 2;
+    const testimonialWidth = 100 / testimonialsPerSlide;
+  
+    const handleNextSlide = () => {
+      const newIndex = Math.min(testimonialIndex + 1, testimonials.length - 1);
+      setTestimonialIndex(newIndex);
+    };
+  
+    const handlePrevSlide = () => {
+      const newIndex = Math.max(testimonialIndex - 1, 0);
+      setTestimonialIndex(newIndex);
+    };
+  
+    const translateX = `translateX(-${testimonialIndex * testimonialWidth}%)`;
 
   return (
     <section>
@@ -56,6 +87,37 @@ const skills = [
           ))}
         </div>
         </div>
+
+        {/* Testimonials */}
+        <div className="mt-6">
+        <h2 className="text-xl font-extrabold text-white text-opacity-90">Testimonials</h2>
+        <div className="mt-6 testimonial-container" style={{ transform: translateX }}>
+        {testimonials.map((testimonial) => (
+          <div key={testimonial.id} className="testimonial" onClick={() => openModal(testimonial)}>
+            <p className="text-gray-800">{testimonial.content.slice(0, 100)}...</p>
+            <p className="text-gray-600 mt-2">{testimonial.author}</p>
+            <p className="text-gray-600">{testimonial.role}</p>
+          </div>
+        ))}
+      </div>
+        <Modal isOpen={modalIsOpen} onRequestClose={closeModal}>
+          {selectedTestimonial && (
+            <div className="p-4">
+              <p className="text-gray-800">{selectedTestimonial.content}</p>
+              <p className="text-gray-600 mt-2">{selectedTestimonial.author}</p>
+              <p className="text-gray-600">{selectedTestimonial.role}</p>
+            </div>
+          )}
+        </Modal>
+        <div>
+        <button className="prev-button" onClick={handlePrevSlide}>
+        Previous
+      </button>
+      <button className="next-button" onClick={handleNextSlide}>
+        Next
+      </button>
+        </div>
+      </div>
     </section>
   );
 };
